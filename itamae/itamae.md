@@ -26,7 +26,7 @@ Costumo sempre iniciar pelos pacotes necessários para à serem mantidos no serv
 
 
 
-```
+```ruby
 ## Variables
 $container_name = "jenkins"
 $user = "alguem"
@@ -67,7 +67,7 @@ end
 
 Um outro bloco de comando bastante util é o <i>execute ... do ... end </i>. Pois com ele podemos executar comandos shell caso necessário. No exemplo abaixo utilizo ele para adicionar o repositorio oficial do docker no servidor.
 
-```
+```ruby
 #Instala o pacote do Git no servidor.
 package 'git' do
   action :install
@@ -87,7 +87,7 @@ Uma grande sacada do Itamae é ele possuir em alguns do seu blocos os campos <i>
 
 Os blocos a seguir instala o Docker e manter o serviço ativo e em execução.
 
-```
+```ruby
 package 'docker-engine' do
   action :install
 end
@@ -101,7 +101,7 @@ end
 Para arquivos o Itamae possui dois blocos na qual podemos trabalhar, o <i>remote_file</i> e o <i>file</i>. A diferença entre eles é que o <i>remote_file</i> espera um arquivo fonte que se encontra no mesmo diretório que nosso arquivo de receita. E o <i>file</i> é criado/autalizado com base no campo <i>content</i>
 
 
-```
+```ruby
 #Bloco de diretório
 directory "/cs-temp" do
   action :create
@@ -146,7 +146,7 @@ Uffa, muita coisa? está quase terminando, resumindo o que entregamos até o mom
 
 Falta colocar para rodar nossa aplicação, que será um container basico do Jenkins. Neste caso vou voltar a utilizar o bloco execute.
 
-```
+```ruby
 execute "Run a Docker Container Jenkins" do
   action :run
   command "docker rm -f $(docker ps -qa) 2> /dev/null || docker run -d --restart=always --name #{$container_name} -p 9090:8080 -p 50000:50000 -v /#{$container_name}:/var/jenkins_home #{$container_name}:latest"
