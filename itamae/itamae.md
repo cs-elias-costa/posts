@@ -3,7 +3,9 @@
 
 ![Itamae](images/logo_2.png)
 
-Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae. Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae uma ferramenta para gestão e configuração de ambientes (<i>configuration management tool</i>) uma ferramenta poderosa se combinado com sua criativade. E naquela época não demonstrei nenhum interesse em sua utilização, porém surguiu uma motiviação, devido uma demanda na qual necessitava de recriar um ambiente de forma automatizada, com consistencia e de execução simples. Como estava buscando alternativas o Itame resurgiu em minha mente e em poucos passos consegui evoluir utilizando o Itamae.
+Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae.
+
+Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae uma ferramenta para gestão e configuração de ambientes (<i>configuration management tool</i>) uma ferramenta poderosa se combinado com sua criativade. E naquela época não demonstrei nenhum interesse em sua utilização, porém surguiu uma motiviação, devido uma demanda na qual necessitava de recriar um ambiente de forma automatizada, com consistencia e de execução simples. Como estava buscando alternativas o Itame resurgiu em minha mente e em poucos passos consegui evoluir utilizando o Itamae.
 
 
 Com ele podemos garantir arquivos, aplicações e outras coisas, que queremos que nosso servidor, mantendo sempre rodando "aquela" aplicação e com "aquele" arquivo de configuração.
@@ -13,15 +15,20 @@ Nesse post quero apresentar o Itame, dando-lhes uma visão geral do seu funciona
 
 Primeiramente, tenha o ruby instalado e execute o comando abaixo:
 
-`$gem install itamae`
+```shell
+$gem install itamae```
 
-Após instalar, chegou a hora de criar as receitas, com elas vamos definir como será a configuração de nosso host.
+Após instalar, chegou a hora de criar a receita, com ela vamos definir como será a configuração de nosso servidor.
 
-`$vi minha_receita.rb`
+```shell
+$touch minha_receita.rb
+$vi minha_receita.rb
+
+```
 
 Na documentação do Itamae no github (https://github.com/itamae-kitchen/itamae/wiki) temos às estruturas das funções que o Itamae implementa.
 
-Costumo sempre iniciar pelos pacotes necessários para à serem mantidos no servidor, ou seja pelas depêndencias necessárias ao projeto, como usuários,pacotes e serviços. No exemplo abaixo estou especificando algumas variaveis que será utilizado na receita, e será criado um usuário e seu respectivo grupo.
+Costumo sempre iniciar pelos pacotes necessários à serem mantidos no servidor, ou seja pelas depêndencias necessárias ao projeto, como usuários,pacotes e serviços. No exemplo abaixo estou especificando algumas variaveis que será utilizado na receita, e será criado um usuário e seu respectivo grupo.
 
 
 
