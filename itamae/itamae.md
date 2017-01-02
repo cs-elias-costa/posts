@@ -7,7 +7,7 @@ Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: htt
 
 Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae.
 
-Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae, uma ferramenta para gestão e configuração de ambientes (configuration management tool) uma ferramenta poderosa se combinado com sua criatividade. E naquela época não demonstrei nenhum interesse em sua utilização, porém surgiu uma motivação, devido uma demanda na qual necessitava de recriar um ambiente de forma automatizada, com consistência e de execução simples. Como estava buscando alternativas, o Itame surgiu em minha mente e em poucos passos consegui evoluir utilizando o Itamae.  
+Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae, uma ferramenta para gestão e configuração de ambientes (configuration management tool) uma ferramenta poderosa se combinado com sua criatividade. E naquela época não demonstrei interesse em sua utilização, porém nos dias atuais surgiu uma motivação,e a motivação sempre é resolver um pepino, digo uma demanda. Esta demanda necessitava recriar um ambiente de forma automatizada, com consistência e de execução simples. Como estava buscando alternativas, o Itame resurgiu (como uma fênix?) em minha mente e em poucos passos consegui evoluir utilizando o Itamae.  
 
 Com ele podemos garantir arquivos, aplicações e outras coisas, que queremos que nosso servidor, mantendo sempre rodando "aquela" aplicação e com "aquele" arquivo de configuração.
 
@@ -120,7 +120,7 @@ end
 
 directory "/#{$container_name}" do
   action :create
-  mode   "755"
+  mode   "777"
 end
 
 #Arquivo remoto
@@ -128,6 +128,11 @@ remote_file "/cs-temp/update_sdk.sh" do
   action  :create
   path    "/cs-temp/update_sdk.sh"
   source  "jenkins/update_sdk.sh"
+end
+
+directory "/#{$container_name}/.ssh" do
+  action :create
+  mode   "775"
 end
 
 #Arquivo cirado/atualizado em tempo de execução.
@@ -139,6 +144,8 @@ file "/#{$container_name}/.ssh/id_rsa.pub" do
   owner   "#{$user}"
   group   "#{$grupo}"
 end
+
+
 
 ```
 
@@ -157,6 +164,13 @@ Uffa, muita coisa? está quase terminando, resumindo o que entregamos até o mom
 Falta colocar para rodar nossa aplicação, que será um container básico do Jenkins. Neste caso volto a utilizar o bloco execute.
 
 ```ruby
+
+execute "Pull Docker Images Jenkins" do
+  action :run
+  command "docker pull #{$container_name}"
+  not_if  "docker ps |grep #{$container_name}"
+end
+
 execute "Run a Docker Container Jenkins" do
   action :run
   command "docker rm -f $(docker ps -qa) 2> /dev/null || docker run -d --restart=always --name #{$container_name} -p 9090:8080 -p 50000:50000 -v /#{$container_name}:/var/jenkins_home #{$container_name}:latest"
@@ -186,8 +200,8 @@ Após a execução será possível acessar e conferir nossa aplicação.
 O Itamae é uma ferramenta bastante poderosa e cumpre sua missão com eficácia na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae.
 
 
- 
-Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este post, também quero também deixar um abraço ao antigo colega de trabalho Fábio Ornellas que me apresentou o Itamae.
+
+Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este post (Um especial abraço para os compnhaneiros Bruno Novo e Paulo Ledo), também quero também deixar um abraço ao antigo colega de trabalho Fábio Ornellas que me apresentou o Itamae.
 
 
-E também gostaria de opiniões, sugestões de melhorias, pois esse é meu primeiro post!!!!  :D
+E também gostaria de opiniões e sugestões de melhorias, pois esse é meu primeiro post!!!!  :D
