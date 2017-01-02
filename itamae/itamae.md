@@ -241,4 +241,4 @@ Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este p
 E também gostaria de opiniões e sugestões de melhorias, pois esse é meu primeiro post!!!!  :D
 
 
-Obs: Tirando a execução do container do Jenkins, os blocos de comando do Itamae são somente para ilustar seu funcionamento.
+Obs: Tirando a execução do container, os blocos de comando do Itamae são somente para ilustrar seu funcionamento.
