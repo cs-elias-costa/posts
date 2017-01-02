@@ -5,15 +5,16 @@
 
 Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae.
 
-<span style="text-align: justify;">Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae, uma ferramenta para gestão e configuração de ambientes (<i>configuration management tool</i>) uma ferramenta poderosa se combinado com sua criativade. E naquela época não demonstrei nenhum interesse em sua utilização, porém surguiu uma motiviação, devido uma demanda na qual necessitava de recriar um ambiente de forma automatizada, com consistencia e de execução simples. Como estava buscando alternativas o Itame resurgiu em minha mente e em poucos passos consegui evoluir utilizando o Itamae. </span>
+Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae.
 
+Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae, uma ferramenta para gestão e configuração de ambientes (configuration management tool) uma ferramenta poderosa se combinado com sua criatividade. E naquela época não demonstrei nenhum interesse em sua utilização, porém surgiu uma motivação, devido uma demanda na qual necessitava de recriar um ambiente de forma automatizada, com consistência e de execução simples. Como estava buscando alternativas, o Itame surgiu em minha mente e em poucos passos consegui evoluir utilizando o Itamae.  
 
 Com ele podemos garantir arquivos, aplicações e outras coisas, que queremos que nosso servidor, mantendo sempre rodando "aquela" aplicação e com "aquele" arquivo de configuração.
-
 
 Nesse post quero apresentar o Itame, dando-lhes uma visão geral do seu funcionamento. Vamos lá:
 
 Primeiramente, tenha o ruby instalado e execute o comando abaixo:
+
 
 ```shell
 $gem install itamae```
@@ -26,9 +27,11 @@ $vi minha_receita.rb
 
 ```
 
+Após instalar, chegou a hora de criar a receita, com ela vamos definir como será a configuração de nosso servidor.
+
 Na documentação do Itamae no github (https://github.com/itamae-kitchen/itamae/wiki) temos às estruturas das funções que o Itamae implementa.
 
-Costumo sempre iniciar pelos pacotes necessários à serem mantidos no servidor, ou seja pelas depêndencias necessárias ao projeto, como usuários,pacotes e serviços. No exemplo abaixo estou especificando algumas variaveis que será utilizado na receita, e será criado um usuário e seu respectivo grupo.
+Costumo sempre iniciar pelos pacotes necessários à serem mantidos no servidor, ou seja pelas dependências necessárias ao projeto, como usuários, pacotes e serviços. No exemplo abaixo estou especificando algumas variáveis que será utilizado na receita, e será criado um usuário e seu respectivo grupo.
 
 
 
@@ -141,7 +144,7 @@ end
 
 
 
-No bloco de diretório irá garantir que o diretorio /cs-temp será criado com à permissão 755. No bloco de arquivo remoto que o arquivo update_sdk.sh será entregue no <i>path</i> /cs-temp/update_sdk.sh, note que o source do arquivo é outro <i>path</i> que está na minha máquina local.
+No bloco de diretório irá garantir que o diretório /cs-temp será criado com à permissão 755. No bloco de arquivo remoto que o arquivo update_sdk.sh será entregue no <i>path</i> /cs-temp/update_sdk.sh, note que o source do arquivo é outro <i>path</i> que está na minha máquina local.
 
 Uffa, muita coisa? está quase terminando, resumindo o que entregamos até o momento:
 
@@ -151,7 +154,7 @@ Uffa, muita coisa? está quase terminando, resumindo o que entregamos até o mom
 - Arquivos
 
 
-Falta colocar para rodar nossa aplicação, que será um container basico do Jenkins. Neste caso volto a utilizar o bloco execute.
+Falta colocar para rodar nossa aplicação, que será um container básico do Jenkins. Neste caso volto a utilizar o bloco execute.
 
 ```ruby
 execute "Run a Docker Container Jenkins" do
@@ -171,18 +174,20 @@ Ou localmente
 `` $ itamae local minha_receita.rb --log-level=DEBUG``
 
 
-Ao utulizar o parâmetro --log-leval=DEBUG o Itamae irá mostrar todos o passos que ele executa.
+Ao utilizar o parâmetro --log-leval=DEBUG o Itamae irá mostrar todos o passos que ele executa.
 
-Após a execução será possivel acessar e conferir nossa aplciação.
+---Imagem
 
+Após a execução será possível acessar e conferir nossa aplicação.
 
-
-
-O Itamae é uma ferramenta bastante poderosa e cumpre sua missão com eficacia na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae.
-
+ --imagem
 
 
+O Itamae é uma ferramenta bastante poderosa e cumpre sua missão com eficácia na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae.
+
+
+ 
 Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este post, também quero também deixar um abraço ao antigo colega de trabalho Fábio Ornellas que me apresentou o Itamae.
 
 
-E também gostaria de opniões, sugestões de melhorias, pois esse é meu primeiro post!!!!  :D
+E também gostaria de opiniões, sugestões de melhorias, pois esse é meu primeiro post!!!!  :D
