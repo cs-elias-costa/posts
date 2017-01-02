@@ -3,7 +3,7 @@
 
 ![Itamae](images/logo_2.png)
 
-Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae. Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae uma ferramenta para gestão de configuração de ambientes (<i>configuration management tool</i>) e naquela época não demonstrei nenhum interesse em sua utilização. E a motiviação sugiur, devido uma demanda na qual necessitava de recriar um ambiente de forma automatizada, com consistencia e de execução simples. Como estava buscando alternativas o Itame resurgiu em minha mente e em poucos passos consegui evoluir utilizando o Itamae.
+Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae. Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae uma ferramenta para gestão e configuração de ambientes (<i>configuration management tool</i>) uma ferramenta poderosa se combinado com sua criativade. E naquela época não demonstrei nenhum interesse em sua utilização, porém surguiu uma motiviação, devido uma demanda na qual necessitava de recriar um ambiente de forma automatizada, com consistencia e de execução simples. Como estava buscando alternativas o Itame resurgiu em minha mente e em poucos passos consegui evoluir utilizando o Itamae.
 
 
 Com ele podemos garantir arquivos, aplicações e outras coisas, que queremos que nosso servidor, mantendo sempre rodando "aquela" aplicação e com "aquele" arquivo de configuração.
@@ -175,7 +175,7 @@ O Itamae é uma ferramenta bastante poderosa e cumpre sua missão de ser leve e 
 
 
 
-Quero agradecer nosso time de DevOps que sempre nos motiva a escrever um post, também quero também deixar um abraço ao antigo colega de trabalho Fábio Ornellas que me apresentou o Itamae.
+Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este post, também quero também deixar um abraço ao antigo colega de trabalho Fábio Ornellas que me apresentou o Itamae.
 
 
 E também gostaria de opniões, sugestões de melhorias, pois esse é meu primeiro post!!!!  :D
