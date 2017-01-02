@@ -231,8 +231,8 @@ Após a execução será possível acessar e conferir nossa aplicação.
 ![Aplicação com sucesso.](images/imagem_jenkins.jpg)
 
 
-O Itamae é uma ferramenta bastante poderosa e cumpre sua missão com eficácia na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae.
 
+Sem mais delongas e concluindo!!! O Itamae é uma ferramenta poderosa e cumpre sua missão com eficácia na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae. Espero que o Itamae venha também fazer parte do seu leque ou caixa de ferramentas.
 
 
 Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este post (Um especial abraço para os compnhaneiros Bruno Novo e Paulo Ledo), também quero também deixar um abraço ao antigo colega de trabalho Fábio Ornellas que me apresentou o Itamae.
