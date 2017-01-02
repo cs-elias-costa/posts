@@ -84,15 +84,15 @@ package 'git' do
 end
 
 
-execute "Adicionar chaves e repo-docker | ubuntu-trusty" do
-  command "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D && echo 'deb https://apt.dockerproject.org/repo ubuntu-trusty main' | tee /etc/apt/sources.list.d/docker.list && apt-get update"
+execute "Adicionar chaves e repo-docker | ubuntu-xenial" do
+  command "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D && echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' | tee /etc/apt/sources.list.d/docker.list && apt-get update"
   not_if "test -e /etc/apt/sources.list.d/docker.list"
-  only_if "cat /etc/issue |grep 'Ubuntu 14.04'" #Somente para ubuntu-trusty 14.04
+  only_if "cat /etc/issue |grep 'Ubuntu 16.04'"
 end
 
 ```
 
-Uma grande sacada do Itamae é ele possuir em alguns do seu blocos os campos <i>not_if</i> e <i>only_if</i>, no exemplo acima ele não irá  executar o bloco caso o comando no campo <i>not_if</i> retornar sucesso. E o campo <i>only_if</i> irá garantir que ele execute somente na versão do Ubuntu 14.04.
+Uma grande sacada do Itamae é ele possuir em alguns do seu blocos os campos <i>not_if</i> e <i>only_if</i>, no exemplo acima ele não irá  executar o bloco caso o comando no campo <i>not_if</i> retornar sucesso. E o campo <i>only_if</i> irá garantir que ele execute somente na versão do Ubuntu 16.04.
 
 
 Os blocos a seguir instala o Docker e mantém o serviço ativo e em execução.
