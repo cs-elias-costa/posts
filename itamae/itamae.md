@@ -15,7 +15,9 @@ Primeiramente, tenha o ruby instalado e execute o comando abaixo:
 
 
 ```shell
-$gem install itamae```
+$gem install itamae
+
+```
 
 Após instalar, chegou a hora de criar a receita, com ela vamos definir como será a configuração de nosso servidor.
 
