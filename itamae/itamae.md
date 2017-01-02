@@ -5,7 +5,7 @@
 
 Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae.
 
-Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae uma ferramenta para gestão e configuração de ambientes (<i>configuration management tool</i>) uma ferramenta poderosa se combinado com sua criativade. E naquela época não demonstrei nenhum interesse em sua utilização, porém surguiu uma motiviação, devido uma demanda na qual necessitava de recriar um ambiente de forma automatizada, com consistencia e de execução simples. Como estava buscando alternativas o Itame resurgiu em minha mente e em poucos passos consegui evoluir utilizando o Itamae.
+<span style="text-align: justify;">Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae, uma ferramenta para gestão e configuração de ambientes (<i>configuration management tool</i>) uma ferramenta poderosa se combinado com sua criativade. E naquela época não demonstrei nenhum interesse em sua utilização, porém surguiu uma motiviação, devido uma demanda na qual necessitava de recriar um ambiente de forma automatizada, com consistencia e de execução simples. Como estava buscando alternativas o Itame resurgiu em minha mente e em poucos passos consegui evoluir utilizando o Itamae. </span>
 
 
 Com ele podemos garantir arquivos, aplicações e outras coisas, que queremos que nosso servidor, mantendo sempre rodando "aquela" aplicação e com "aquele" arquivo de configuração.
@@ -151,7 +151,7 @@ Uffa, muita coisa? está quase terminando, resumindo o que entregamos até o mom
 - Arquivos
 
 
-Falta colocar para rodar nossa aplicação, que será um container basico do Jenkins. Neste caso vou voltar a utilizar o bloco execute.
+Falta colocar para rodar nossa aplicação, que será um container basico do Jenkins. Neste caso volto a utilizar o bloco execute.
 
 ```ruby
 execute "Run a Docker Container Jenkins" do
@@ -178,7 +178,7 @@ Após a execução será possivel acessar e conferir nossa aplciação.
 
 
 
-O Itamae é uma ferramenta bastante poderosa e cumpre sua missão de ser leve e eficaz na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae.
+O Itamae é uma ferramenta bastante poderosa e cumpre sua missão com eficacia na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae.
 
 
 
