@@ -95,7 +95,7 @@ end
 Uma grande sacada do Itamae é ele possuir em alguns do seu blocos os campos <i>not_if</i> e <i>only_if</i>, no exemplo acima ele não irá  executar o bloco caso o comando no campo <i>not_if</i> retornar sucesso. E o campo <i>only_if</i> irá garantir que ele execute somente na versão do Ubuntu 14.04.
 
 
-Os blocos a seguir instala o Docker e manter o serviço ativo e em execução.
+Os blocos a seguir instala o Docker e mantém o serviço ativo e em execução.
 
 ```ruby
 package 'docker-engine' do
@@ -181,20 +181,54 @@ end
 
 Agora vamos executar nossa receita no servidor, podendo ser ele remoto ou localmente. Com os comandos abaixo:
 
-``$ itamae ssh -i /home/user/.ssh/user-key -u user -h host minha_receita.rb --log-level=DEBUG``
+``$ itamae ssh -i /home/user/.ssh/user-key -u user -h host minha_receita.rb ``
 
 Ou localmente
 
-`` $ itamae local minha_receita.rb --log-level=DEBUG``
+`` $ itamae local minha_receita.rb `
 
 
-Ao utilizar o parâmetro --log-leval=DEBUG o Itamae irá mostrar todos o passos que ele executa.
+```shell
 
----Imagem
+eliascosta@nb-393 [~/posts/itamae]$ itamae ssh -i ~/.ssh/eliascosta-key -u ubuntu -h 10.123.0.2 minha_receita.rb
+ INFO : Starting Itamae...
+ INFO : Recipe: /Users/eliascosta/posts/itamae/minha_receita.rb
+ INFO :   user[alguem] exist will change from 'false' to 'true'
+ INFO :   directory[/home/alguem/.ssh] exist will change from 'false' to 'true'
+ INFO :   directory[/home/alguem/.ssh] mode will be '0755'
+ INFO :   directory[/home/alguem/.ssh] owner will be 'alguem'
+ INFO :   directory[/home/alguem/.ssh] group will be 'alguem'
+ INFO :   execute[Add ao sudoers] executed will change from 'false' to 'true'
+ INFO :   execute[Adicionar chaves e repo-docker | ubuntu-xenial] executed will change from 'false' to 'true'
+ INFO :   package[docker-engine] installed will change from 'false' to 'true'
+ INFO :   directory[/cs-temp] exist will change from 'false' to 'true'
+ INFO :   directory[/cs-temp] mode will be '0755'
+ INFO :   directory[/jenkins] exist will change from 'false' to 'true'
+ INFO :   directory[/jenkins] mode will be '0777'
+ INFO :   remote_file[/cs-temp/update_sdk.sh] exist will change from 'false' to 'true'
+ INFO :   directory[/jenkins/.ssh] exist will change from 'false' to 'true'
+ INFO :   directory[/jenkins/.ssh] mode will be '0775'
+ INFO :   file[/jenkins/.ssh/id_rsa.pub] exist will change from 'false' to 'true'
+ INFO :   file[/jenkins/.ssh/id_rsa.pub] modified will change from 'false' to 'true'
+ INFO :   file[/jenkins/.ssh/id_rsa.pub] mode will be '0644'
+ INFO :   file[/jenkins/.ssh/id_rsa.pub] owner will be 'alguem'
+ INFO :   file[/jenkins/.ssh/id_rsa.pub] group will be 'alguem'
+ INFO :   diff:
+ INFO :   --- /dev/null	2017-01-02 16:58:31.160000000 +0000
+ INFO :   +++ /tmp/itamae_tmp/1483376436.9151402	2017-01-02 17:00:38.370166512 +0000
+ INFO :   @@ -0,0 +1 @@
+ INFO :   +ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCldjCpdcS4u5nlaRWGEIcImOKQMoBN5qMs5JmpCQAHrDDd+h50JcxQWoih5GN18xV9dOZzOafKZVG0CRo7MVs/l0AnkyBBpWfj0MnnXLdZjt3cj65kfGVaZOU6E3b1QDzF9rd+eJjoyNu1sw/qDnbeXm5PjWEyKki9YilIEXzAweH+xXzOAS8Wh1vypQi+T7jiTD8b4U36XlE+KYEb0xpxGfgP+ReEFAD+Sfr41n2bahFcRVWIC9HbvRIq9WXC+1x2J8GLEMvPIKywNDZg18y9q3Tg/33VbRCmZGKAh3pwaDLipwdivWZG1jDmudLw0pYFDoIxl224ZAVdnFnXL2yv jenkins$e3b1ac9aa924
+ INFO :   \ No newline at end of file
+ INFO :   execute[Pull Docker Images Jenkins] executed will change from 'false' to 'true'
+ INFO :   execute[Run a Docker Container Jenkins] executed will change from 'false' to 'true'
+
+
+```
+Caso queira maiores informações bastante utilizar o parâmetro **--log-leval=DEBUG** e o Itamae irá mostrar todos o passos que ele executa.
 
 Após a execução será possível acessar e conferir nossa aplicação.
 
- --imagem
+![Aplicação com sucesso.](images/imagem_jenkins.jpg)
 
 
 O Itamae é uma ferramenta bastante poderosa e cumpre sua missão com eficácia na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae.
@@ -205,3 +239,6 @@ Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este p
 
 
 E também gostaria de opiniões e sugestões de melhorias, pois esse é meu primeiro post!!!!  :D
+
+
+Obs: Tirando a execução do container do Jenkins, os blocos de comando do Itamae são somente para ilustar seu funcionamento.
