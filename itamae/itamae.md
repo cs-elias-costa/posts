@@ -3,7 +3,7 @@
 
 ![Itamae](images/logo_2.png)
 
-Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae.
+Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae. Muito parecido com as ferramentas como: Ansible, Chef e Puppet.
 
 Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae, uma ferramenta para gestão e configuração de ambientes (configuration management tool) uma ferramenta poderosa se combinado com sua criatividade. E naquela época não demonstrei interesse em sua utilização, porém nos dias atuais surgiu uma motivação,e a motivação sempre é resolver um pepino, digo uma demanda. Esta demanda necessitava recriar um ambiente de forma automatizada, com consistência e de execução simples. Como estava buscando alternativas, o Itame resurgiu (como uma fênix?) em minha mente e em poucos passos consegui evoluir utilizando o Itamae.  
 
