@@ -3,33 +3,30 @@
 
 ![Itamae](images/logo_2.png)
 
-Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae. Muito parecido com as ferramentas: Ansible, Chef e Puppet.
+Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae e que funciona apra gestão e configuração de ambientes (configuration management tool). É muito parecido com o Ansible, o Chef e o Puppet.
 
-Há mais ou menos um ano e meio atrás, fui apresentado ao Itamae, uma ferramenta para gestão e configuração de ambientes (configuration management tool) uma ferramenta poderosa se combinado com sua criatividade. E naquela época não demonstrei interesse em sua utilização, porém nos dias atuais surgiu uma motivação,e a motivação sempre é resolver um pepino, digo uma demanda. Esta demanda necessitava recriar um ambiente de forma automatizada, com consistência e de execução simples. Como estava buscando alternativas, o Itame resurgiu (como uma fênix?) em minha mente e em poucos passos consegui evoluir utilizando o Itamae.  
+Eu fui apresentado a ele há mais ou menos um ano e com o tepmo pude perceber que é uma ferramenta poderosa se combinada à sua criatividade. Naquela época não tive muito interesse em usar, mas atualmente surgiu uma motivação (ou seja, resolver um pepino, digo, uma demanda). Eu precisava recriar um ambiente de forma automatizada, com consistência e de execução simples. Como estava buscando alternativas, o Itamae resurgiu em minha mente (como uma fênix?) e em poucos passos consegui evoluir.  
 
-Com ele podemos garantir arquivos, aplicações e outras coisas, que queremos que nosso servidor, mantendo sempre rodando "aquela" aplicação e com "aquele" arquivo de configuração.
+Com ele podemos garantir que arquivos, aplicações e outras coisas que queremos no nosso servidor rodem sempre combinados. Ou seja, mantemos sempre rodando "aquela" aplicação com "aquele" arquivo de configuração.
 
-Nesse post quero apresentar o Itame, dando-lhes uma visão geral do seu funcionamento. Vamos lá:
+Nesse post a ideia é apresentar o Itamae, dando uma visão geral do seu funcionamento. Vamos lá:
 
-Primeiramente, tenha o ruby instalado e execute o comando abaixo:
-
+Primeiramente, tenha o Ruby instalado e execute o comando abaixo:
 
 ```shell
 gem install itamae
 ```
 
-Após instalar, chegou a hora de criar a receita, com ela vamos definir como será a configuração de nosso servidor.
+Após instalar, chegou a hora de criar a receita. Com ela vamos definir como será a configuração de nosso servidor.
 
 ```shell
 touch minha_receita.rb
 vi minha_receita.rb
 ```
 
-Após instalar, chegou a hora de criar a receita, com ela vamos definir como será a configuração de nosso servidor.
+Na documentação do Itamae no Github (https://github.com/itamae-kitchen/itamae/wiki) podemos ver as estruturas das funções que o Itamae implementa.
 
-Na documentação do Itamae no github (https://github.com/itamae-kitchen/itamae/wiki) temos às estruturas das funções que o Itamae implementa.
-
-Costumo sempre iniciar pelos pacotes necessários à serem mantidos no servidor, ou seja pelas dependências necessárias ao projeto, como usuários, pacotes e serviços. No exemplo abaixo estou especificando algumas variáveis que será utilizado na receita, e será criado um usuário e seu respectivo grupo.
+Costumo sempre iniciar pelos pacotes que precisam ser mantidos no servidor, ou seja, pelas dependências necessárias ao projeto, como usuários, pacotes e serviços. No exemplo abaixo estou especificando algumas variáveis que serão utilizadas na receita. Também criaremos um usuário e seu respectivo grupo.
 
 
 
@@ -70,7 +67,7 @@ execute "Add sudoers" do
 end
 ```
 
-Um outro bloco de comando bastante util é o <i>execute ... do ... end </i>. Pois com ele podemos executar comandos shell caso necessário. No exemplo abaixo utilizo ele para adicionar o repositorio oficial do docker no servidor.
+Outro bloco de comando bastante útil é o <i>execute ... do ... end </i>. Com ele, podemos executar comandos shell caso necessário. No exemplo abaixo utilizo para adicionar o repositório oficial do docker no servidor.
 
 ```ruby
 #Instala o pacote do Git no servidor.
@@ -86,10 +83,9 @@ execute "Adicionar chaves e repo-docker | ubuntu-xenial" do
 end
 ```
 
-Uma grande sacada do Itamae é ele possuir em alguns do seu blocos os campos <i>not_if</i> e <i>only_if</i>, no exemplo acima ele não irá  executar o bloco caso o comando no campo <i>not_if</i> retornar sucesso. E o campo <i>only_if</i> irá garantir que ele execute somente na versão do Ubuntu 16.04.
+Uma grande sacada do Itamae é possuir em alguns de seus blocos os campos <i>not_if</i> e <i>only_if</i>. No exemplo acima ele não irá  executar o bloco caso o comando no campo <i>not_if</i> retornar sucesso. E o campo <i>only_if</i> vai garantir que ele execute somente na versão do Ubuntu 16.04.
 
-
-Os blocos a seguir instala o Docker e mantém o serviço ativo e em execução.
+Os blocos a seguir instalam o Docker e mantêm o serviço ativo e em execução.
 
 ```ruby
 #Instala o docker
@@ -102,7 +98,7 @@ service 'docker' do
   action [:enable, :start]
 end
 ```
-Para arquivos o Itamae possui dois blocos na qual podemos trabalhar, o <i>remote_file</i> e o <i>file</i>. A diferença entre eles é que o <i>remote_file</i> espera um arquivo fonte que se encontra no mesmo diretório que nosso arquivo de receita. E o <i>file</i> é criado/autalizado com base no campo <i>content</i>
+Para arquivos, o Itamae possui dois blocos nos quais podemos trabalhar, o <i>remote_file</i> e o <i>file</i>. A diferença entre eles é que o <i>remote_file</i> espera um arquivo fonte que está no mesmo diretório que nosso arquivo de receita. E o <i>file</i> é criado/atualizado com base no campo <i>content</i>
 
 ```ruby
 #Bloco de diretório
@@ -141,11 +137,11 @@ end
 
 
 
-No bloco de diretório irá garantir que o diretório /cs-temp será criado com à permissão 755. No bloco de arquivo remoto que o arquivo update_sdk.sh será entregue no <i>path</i> /cs-temp/update_sdk.sh, note que o source do arquivo é outro <i>path</i> que está na minha máquina local.
+O bloco de diretório vai garantir que o diretório /cs-temp será criado com a permissão 755. No bloco de arquivo remoto (no qual o o arquivo update_sdk.sh será entregue no <i>path</i> /cs-temp/update_sdk.sh) note que o source é outro <i>path</i> que está na minha máquina local.
 
-Uffa, muita coisa? está quase terminando, resumindo o que entregamos até o momento:
+Ufa, muita coisa? Calma, está quase terminando. Resumindo o que entregamos até o momento:
 
-:white_check_mark: Dependencias <br>
+:white_check_mark: Dependências <br>
 :white_check_mark: Serviços<br>
 :white_check_mark: Diretórios<br>
 :white_check_mark: Arquivos<br>
@@ -170,11 +166,11 @@ execute "Run a Docker Container Jenkins" do
 end
 ```
 
-Agora vamos executar nossa receita no servidor, podendo ser ele remoto ou localmente. Com o comando abaixo:
+Agora vamos executar nossa receita no servidor, ele pode ser remoto ou local. Basta o comando abaixo:
 
 ``itamae ssh -i /home/user/.ssh/user-key -u user -h host minha_receita.rb ``
 
-Ou localmente
+Ou localmente:
 
 `itamae local minha_receita.rb`
 
@@ -214,21 +210,20 @@ eliascosta@nb-393 [~/posts/itamae]$ itamae ssh -i ~/.ssh/eliascosta-key -u ubunt
 
 
 ```
-Caso queira maiores informações bastante utilizar o parâmetro **--log-level=DEBUG** e o Itamae irá mostrar todos o passos que ele executa.
+Caso queira mais informações basta utilizar o parâmetro **--log-level=DEBUG** e o Itamae vai mostrar todos o passos que ele executa.
 
-Após a execução será possível acessar e conferir nossa aplicação.
+Após a execução é possível acessar e conferir nossa aplicação:
 
 ![Aplicação com sucesso.](images/imagem_jenkins.jpg)
 
+Concluindo: o Itamae é uma ferramenta poderosa e cumpre sua missão com eficácia na automação de ambientes. Existem muitas funções que você pode utilizar para extrair o máximo da ferramenta. Espero que o Itamae venha também fazer parte do seu leque ou da sua caixa de ferramentas.
 
+Antes de terminar, queria agradecer o nosso time de DevOps que me motivou a escrever este post (um abraço especial para os companhaneiros Bruno Novo e Paulo Ledo :smile:), e também quero deixar um abraço ao antigo colega de trabalho Fábio Ornellas, que me apresentou o Itamae.
 
-Sem mais delongas e concluindo!!! O Itamae é uma ferramenta poderosa e cumpre sua missão com eficácia na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae. Espero que o Itamae venha também fazer parte do seu leque ou caixa de ferramentas.
-
-
-Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este post (Um especial abraço para os companhaneiros Bruno Novo e Paulo Ledo :smile:), também quero também deixar um abraço ao antigo colega de trabalho Fábio Ornellas que me apresentou o Itamae.
-
-
-E também gostaria de opiniões e sugestões de melhorias, pois esse é meu primeiro post!!!!  :smiley:
-
+E se você tiver opiniões e sugestões de melhorias, fique à vontade nos campos abaixo. Esse é meu primeiro post!  :smiley:
 
 Obs: Tirando a execução do container, os blocos de comando do Itamae são somente para ilustrar seu funcionamento.
+
+--
+
+Quer trabalhar com DevOps em um time ágil de verdade? Clique aqui. (https://www.concretesolutions.com.br/vagas/)
