@@ -15,16 +15,14 @@ Primeiramente, tenha o ruby instalado e execute o comando abaixo:
 
 
 ```shell
-$gem install itamae
-
+gem install itamae
 ```
 
 Após instalar, chegou a hora de criar a receita, com ela vamos definir como será a configuração de nosso servidor.
 
 ```shell
-$touch minha_receita.rb
-$vi minha_receita.rb
-
+touch minha_receita.rb
+vi minha_receita.rb
 ```
 
 Após instalar, chegou a hora de criar a receita, com ela vamos definir como será a configuração de nosso servidor.
@@ -41,8 +39,6 @@ Costumo sempre iniciar pelos pacotes necessários à serem mantidos no servidor,
 $container_name = "jenkins"
 $user = "alguem"
 $grupo = "alguem"
-
-
 
 #Cria o grupo e o usuário no servidor
 group "#{$grupo}" do
@@ -72,7 +68,6 @@ execute "Add sudoers" do
   command "echo '#{$user} ALL=NOPASSWD: ALL' >> /etc/sudoers"
   not_if "cat /etc/sudoers |grep #{$user}"
 end
-
 ```
 
 Um outro bloco de comando bastante util é o <i>execute ... do ... end </i>. Pois com ele podemos executar comandos shell caso necessário. No exemplo abaixo utilizo ele para adicionar o repositorio oficial do docker no servidor.
@@ -83,13 +78,11 @@ package 'git' do
   action :install
 end
 
-
 execute "Adicionar chaves e repo-docker | ubuntu-xenial" do
   command "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D && echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' | tee /etc/apt/sources.list.d/docker.list && apt-get update"
   not_if "test -e /etc/apt/sources.list.d/docker.list"
   only_if "cat /etc/issue |grep 'Ubuntu 16.04'"
 end
-
 ```
 
 Uma grande sacada do Itamae é ele possuir em alguns do seu blocos os campos <i>not_if</i> e <i>only_if</i>, no exemplo acima ele não irá  executar o bloco caso o comando no campo <i>not_if</i> retornar sucesso. E o campo <i>only_if</i> irá garantir que ele execute somente na versão do Ubuntu 16.04.
@@ -102,14 +95,12 @@ package 'docker-engine' do
   action :install
 end
 
-
 # Keep service docker running
 service 'docker' do
   action [:enable, :start]
 end
 ```
 Para arquivos o Itamae possui dois blocos na qual podemos trabalhar, o <i>remote_file</i> e o <i>file</i>. A diferença entre eles é que o <i>remote_file</i> espera um arquivo fonte que se encontra no mesmo diretório que nosso arquivo de receita. E o <i>file</i> é criado/autalizado com base no campo <i>content</i>
-
 
 ```ruby
 #Bloco de diretório
@@ -144,9 +135,6 @@ file "/#{$container_name}/.ssh/id_rsa.pub" do
   owner   "#{$user}"
   group   "#{$grupo}"
 end
-
-
-
 ```
 
 
@@ -155,16 +143,17 @@ No bloco de diretório irá garantir que o diretório /cs-temp será criado com 
 
 Uffa, muita coisa? está quase terminando, resumindo o que entregamos até o momento:
 
-- Dependencias
-- Serviços
-- Diretórios
-- Arquivos
+:white_check_mark: Dependencias <br>
+:white_check_mark: Serviços<br>
+:white_check_mark: Diretórios<br>
+:white_check_mark: Arquivos<br>
+:x: Aplicação
 
 
 Falta colocar para rodar nossa aplicação, que será um container básico do Jenkins. Neste caso volto a utilizar o bloco execute.
 
 ```ruby
-
+#Pull da imagem do Jenkins
 execute "Pull Docker Images Jenkins" do
   action :run
   command "docker pull #{$container_name}"
@@ -179,17 +168,16 @@ execute "Run a Docker Container Jenkins" do
 end
 ```
 
-Agora vamos executar nossa receita no servidor, podendo ser ele remoto ou localmente. Com os comandos abaixo:
+Agora vamos executar nossa receita no servidor, podendo ser ele remoto ou localmente. Com o comando abaixo:
 
-``$ itamae ssh -i /home/user/.ssh/user-key -u user -h host minha_receita.rb ``
+``itamae ssh -i /home/user/.ssh/user-key -u user -h host minha_receita.rb ``
 
 Ou localmente
 
-`` $ itamae local minha_receita.rb `
+`itamae local minha_receita.rb`
 
 
 ```shell
-
 eliascosta@nb-393 [~/posts/itamae]$ itamae ssh -i ~/.ssh/eliascosta-key -u ubuntu -h 10.123.0.2 minha_receita.rb
  INFO : Starting Itamae...
  INFO : Recipe: /Users/eliascosta/posts/itamae/minha_receita.rb
@@ -224,7 +212,7 @@ eliascosta@nb-393 [~/posts/itamae]$ itamae ssh -i ~/.ssh/eliascosta-key -u ubunt
 
 
 ```
-Caso queira maiores informações bastante utilizar o parâmetro **--log-leval=DEBUG** e o Itamae irá mostrar todos o passos que ele executa.
+Caso queira maiores informações bastante utilizar o parâmetro **--log-level=DEBUG** e o Itamae irá mostrar todos o passos que ele executa.
 
 Após a execução será possível acessar e conferir nossa aplicação.
 
@@ -235,10 +223,10 @@ Após a execução será possível acessar e conferir nossa aplicação.
 Sem mais delongas e concluindo!!! O Itamae é uma ferramenta poderosa e cumpre sua missão com eficácia na automação de ambientes. Existe bastante funções que você poderá utilizar e extrair o máximo do Itamae. Espero que o Itamae venha também fazer parte do seu leque ou caixa de ferramentas.
 
 
-Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este post (Um especial abraço para os companhaneiros Bruno Novo e Paulo Ledo), também quero também deixar um abraço ao antigo colega de trabalho Fábio Ornellas que me apresentou o Itamae.
+Quero agradecer ao nosso time de DevOps que sempre nos motivou a escrever este post (Um especial abraço para os companhaneiros Bruno Novo e Paulo Ledo :smile:), também quero também deixar um abraço ao antigo colega de trabalho Fábio Ornellas que me apresentou o Itamae.
 
 
-E também gostaria de opiniões e sugestões de melhorias, pois esse é meu primeiro post!!!!  :D
+E também gostaria de opiniões e sugestões de melhorias, pois esse é meu primeiro post!!!!  :smiley:
 
 
 Obs: Tirando a execução do container, os blocos de comando do Itamae são somente para ilustrar seu funcionamento.
