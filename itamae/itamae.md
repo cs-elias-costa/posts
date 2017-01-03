@@ -78,6 +78,7 @@ package 'git' do
   action :install
 end
 
+#Adiciona chaves para repo do docker.
 execute "Adicionar chaves e repo-docker | ubuntu-xenial" do
   command "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D && echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' | tee /etc/apt/sources.list.d/docker.list && apt-get update"
   not_if "test -e /etc/apt/sources.list.d/docker.list"
@@ -91,11 +92,12 @@ Uma grande sacada do Itamae é ele possuir em alguns do seu blocos os campos <i>
 Os blocos a seguir instala o Docker e mantém o serviço ativo e em execução.
 
 ```ruby
+#Instala o docker
 package 'docker-engine' do
   action :install
 end
 
-# Keep service docker running
+# Mantém o serviço do docker rodando.
 service 'docker' do
   action [:enable, :start]
 end
