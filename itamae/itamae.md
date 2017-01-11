@@ -5,7 +5,7 @@
 
 Itamae é um projeto open-source baseado no Chef, disponibilizado no Github: https://github.com/itamae-kitchen/itamae e que funciona para gestão e configuração de ambientes (configuration management tool). É muito parecido com o Ansible, o Chef e o Puppet.
 
-Eu fui apresentado a ele há mais ou menos um ano e com o tepmo pude perceber que é uma ferramenta poderosa se combinada à sua criatividade. Naquela época não tive muito interesse em usar, mas atualmente surgiu uma motivação (ou seja, resolver um pepino, digo, uma demanda). Eu precisava recriar um ambiente de forma automatizada, com consistência e de execução simples. Como estava buscando alternativas, o Itamae resurgiu em minha mente (como uma fênix?) e em poucos passos consegui evoluir.  
+Eu fui apresentado a ele há mais ou menos um ano e com o tempo pude perceber que é uma ferramenta poderosa se combinada à sua criatividade. Naquela época não tive muito interesse em usar, mas atualmente surgiu uma motivação (ou seja, resolver um pepino, digo, uma demanda). Eu precisava recriar um ambiente de forma automatizada, com consistência e de execução simples. Como estava buscando alternativas, o Itamae resurgiu em minha mente (como uma fênix?) e em poucos passos consegui evoluir.  
 
 Com ele podemos garantir que arquivos, aplicações e outras coisas que queremos no nosso servidor rodem sempre combinados. Ou seja, mantemos sempre rodando "aquela" aplicação com "aquele" arquivo de configuração.
 
